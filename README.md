@@ -1,6 +1,8 @@
 Reboot if required
 =========
 
+[![Build Status](https://travis-ci.org/Footur/ansible-reboot-required.svg?branch=master)](https://travis-ci.org/Footur/ansible-reboot-required)
+
 An ansible role for rebooting Linux hosts when a reboot is required.
 
 Requirements
