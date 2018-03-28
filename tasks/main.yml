@@ -1,0 +1,28 @@
+---
+- stat:
+    path: /var/run/reboot-required
+  register: reboot_required
+
+- name: Reboot host now
+  become: yes
+  shell: sleep 2 && shutdown -r now 'Reboot by Ansible'
+  async: 1
+  poll: 0
+  when: reboot_required.stat.exists == True and reboot_allowed == True and reboot_time is undefined
+
+- name: Reboot host at a certain time
+  become: yes
+  command: shutdown -r '{{ reboot_time }}' 'Reboot by Ansible'
+  when: reboot_required.stat.exists == True and reboot_allowed == True and reboot_time is defined
+
+- name: Wait for host
+  become: no
+  wait_for:
+    host: '{{ ansible_default_ipv4.address }}'
+    port: '{{ ansible_ssh_port | default(22) }}'
+    state: started
+    delay: 20
+    timeout: 300
+    connect_timeout: 30
+  delegate_to: localhost
+  when: reboot_required.stat.exists == True and reboot_allowed == True and reboot_time is undefined

@@ -1,0 +1,13 @@
+galaxy_info:
+  author: Tim Bultmann
+  description: A role for rebooting hosts when a reboot is required
+  company: inmedias.it GmbH
+  license: GPLv3
+  min_ansible_version: 1.9
+  platforms:
+  - name: Linux
+    versions:
+      - any
+  galaxy_tags: [ reboot, shutdown, update, reboot-required ]
+
+dependencies: []
