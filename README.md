@@ -5,6 +5,8 @@ Reboot if required
 
 An ansible role for rebooting Linux hosts when a reboot is required.
 
+⚠️ Works only with Debian-based Linux distributions
+
 Requirements
 ------------
 
